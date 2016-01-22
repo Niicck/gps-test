@@ -73,8 +73,15 @@
 
   //geo callbacks
   var success = function(pos) {
-    console.log('watchPosition successful:', pos.coords.latitude + "," + pos.coords.longitude);
-    socket.emit('chat-message', username + "'s position: " + pos.coords.latitude + "," + pos.coords.longitude);
+    var posObj = {
+      username: username,
+      lat: pos.coords.latitude,
+      long: pos.coords.longitude
+    };
+
+    console.log('watchPosition successful:', posObj.lat + "," + posObj.long);
+
+    socket.emit('new-location', posObj);
   };
 
   var error = function(err) {
@@ -94,7 +101,10 @@
   });
 
   $('form').submit(function() {
-    socket.emit('chat-message', username + ": " + $('#m').val());
+    socket.emit('chat-message', {
+      "username": username,
+      "text": $('#m').val()
+    });
     $('#m').val('');
     return false;
   });
