@@ -20,15 +20,5 @@ var toRadians = function(deg) {
 }
 
 exports.withinRange = function(lat1, long1, lat2, long2, m) {
-  if (haversine(lat1,long1,lat2,long2) <= m) {
-    return true;
-  }
+  return (haversine(lat1,long1,lat2,long2) <= m);
 }
-
-var lat1 =48.859065
-var long1 = 2.294518
-
-var lat2 = 48.857470
-var long2 = 2.294497
-
-console.log("Distance is", haversine(lat1,long1,lat2,long2));

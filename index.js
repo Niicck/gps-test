@@ -1,7 +1,7 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var withinRange = require('helpers/index.js').withinRange;
+var withinRange = require(__dirname + '/helpers/index.js').withinRange;
 var usernames = [];
 var target = {
   lat: 34.0192699,
@@ -28,7 +28,7 @@ io.on('connection', function(socket){
     // } else {
     //   io.emit('chat-broadcast', data.username + " position: " + data.lat + data.long);
     //}
-    if (withinRange(target.lat, target.long, 34.019990, -118.493925, 10)){
+    if (withinRange(data.lat, data.long, 34.019990, -118.493925, 10)){
       io.emit('chat-broadcast', data.username + " COLLISION WITH TARGET!");
     } else {
       io.emit('chat-broadcast', data.username + " position: " + data.lat + data.long);
