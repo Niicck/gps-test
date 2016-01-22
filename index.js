@@ -1,7 +1,7 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var withinRange = require(__dirname + '/helpers/index.js').withinRange;
+var calc = require(__dirname + '/helpers/index.js');
 
 var usernames = [];
 var target = {
@@ -36,10 +36,10 @@ io.on('connection', function(socket){
       range: 5,
     }
 
-    var dist = haversine(dat.lat, data.long, item.lat, item.long);
+    var dist = calc.haversine(dat.lat, data.long, item.lat, item.long);
     console.log("Distance from target", dist);
     io.emit('chat-broadcast', "Distance from target: " + dist.toString());
-    if (withinRange(data.lat, data.long, item.lat, item.long, item.range)){
+    if (calc.withinRange(data.lat, data.long, item.lat, item.long, item.range)){
       io.emit('chat-broadcast', data.username + " COLLISION WITH TARGET!");
     } else {
       io.emit('chat-broadcast', data.username + " position: " + data.lat + ', ' + data.long);
