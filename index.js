@@ -20,20 +20,31 @@ io.on('connection', function(socket){
     console.log('usernames sent to clients: ', usernames);
   });
 
-  socket.on('chat-message', function(data){
-    console.log('message: ' + data);
+  socket.on('new-location', function(data){
+    //console.log('message: ' + data);
 
     // if (Math.abs(data.lat - target.lat) < 0.000025 && Math.abs(data.long - target.long) < 0.000025) {
     //   io.emit('chat-broadcast', data.username + " COLLISION WITH TARGET!");
     // } else {
     //   io.emit('chat-broadcast', data.username + " position: " + data.lat + data.long);
     //}
-    if (withinRange(data.lat, data.long, 34.019990, -118.493925, 10)){
+    var item = {
+      lat: 34.019297,
+      long: -118.494642,
+      type: "flag",
+      range: 15
+    }
+
+    if (withinRange(data.lat, data.long, item.lat, item.long, item.range)){
       io.emit('chat-broadcast', data.username + " COLLISION WITH TARGET!");
     } else {
-      io.emit('chat-broadcast', data.username + " position: " + data.lat + data.long);
+      io.emit('chat-broadcast', data.username + " position: " + data.lat + ', ' + data.long);
     }
   });
+
+  socket.on('chat-message', function (msg) {
+    io.emit('chat-broadcast', msg.username + ": " + msg.text);
+  })
 
   socket.on('disconnect', function(){
     console.log('user disconnected :(');

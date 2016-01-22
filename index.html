@@ -80,7 +80,7 @@
     };
 
     console.log('watchPosition successful:', posObj.lat + "," + posObj.long);
-    socket.emit('chat-message', posObj);
+    socket.emit('new-location', posObj);
   };
 
   var error = function(err) {
@@ -100,7 +100,10 @@
   });
 
   $('form').submit(function() {
-    socket.emit('chat-message', username + ": " + $('#m').val());
+    socket.emit('chat-message', {
+      "username": username,
+      "text": $('#m').val()
+    });
     $('#m').val('');
     return false;
   });
