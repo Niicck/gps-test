@@ -1,6 +1,6 @@
 var math = require('mathjs');
 
-var haversine = function(lat1, long1, lat2, long2){
+var haversine = exports.haversine = function(lat1, long1, lat2, long2){
 
   lat1 = toRadians(lat1);
   long1 = toRadians(long1);
