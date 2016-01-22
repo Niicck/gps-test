@@ -33,7 +33,7 @@ io.on('connection', function(socket){
       lat: 34.0192316,
       long: -118.4943091,
       type: "flag",
-      range: 20,
+      range: 5,
     }
 
     if (withinRange(data.lat, data.long, item.lat, item.long, item.range)){
