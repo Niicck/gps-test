@@ -80,7 +80,11 @@
     };
 
     console.log('watchPosition successful:', posObj.lat + "," + posObj.long);
+<<<<<<< HEAD
     socket.emit('new-location', posObj);
+=======
+    socket.emit('chat-message', posObj);
+>>>>>>> implement collision detection (test)
   };
 
   var error = function(err) {
