@@ -28,3 +28,4 @@ exports.withinRange = function(lat1, long1, lat2, long2, m) {
     return false;
   };
 }
+feature) create formula to calculate distance from lat/long in meters
