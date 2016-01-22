@@ -1,11 +1,8 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-<<<<<<< HEAD
-var withinRange = require('helpers/index.js').withinRange;
-=======
 var withinRange = require(__dirname + '/helpers/index.js').withinRange;
->>>>>>> fc24f22ba041b32060b12fd5c3e46ab4f0692d0b
+
 var usernames = [];
 var target = {
   lat: 34.0192699,
