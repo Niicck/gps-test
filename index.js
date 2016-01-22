@@ -36,7 +36,7 @@ io.on('connection', function(socket){
       range: 5,
     }
 
-    var dist = calc.haversine(dat.lat, data.long, item.lat, item.long);
+    var dist = calc.haversine(data.lat, data.long, item.lat, item.long);
     console.log("Distance from target", dist);
     io.emit('chat-broadcast', "Distance from target: " + dist.toString());
     if (calc.withinRange(data.lat, data.long, item.lat, item.long, item.range)){
