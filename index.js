@@ -30,8 +30,8 @@ io.on('connection', function(socket){
     //   io.emit('chat-broadcast', data.username + " position: " + data.lat + data.long);
     //}
     var item = {
-      lat: 34.0192316,
-      long: -118.4943091,
+      lat: 34.0191826,
+      long: -118.4942513,
       type: "flag",
       range: 5,
     }
