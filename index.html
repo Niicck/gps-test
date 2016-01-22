@@ -66,7 +66,6 @@
   //ask user for permission
   navigator.geolocation.getCurrentPosition(function(pos){
     console.log("Initial position: ", pos.coords);
-    console.log("We pushed from a branch!");
   });
 
   //open connection
@@ -111,7 +110,7 @@
   });
 
   socket.on('chat-broadcast', function(msg){
-    $('#messages').append($('<li>').text(msg));
+    $('#messages').prepend($('<li>').text(msg));
   });
 
   </script>
