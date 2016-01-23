@@ -91,7 +91,7 @@
   };
 
   //geo change event listener
-  setTimeout(navigator.geolocation.getCurrentPosition.call(null, success, error, geo_options),
+  setTimeout(function(){navigator.geolocation.getCurrentPosition(success, error, geo_options)},
     1000)
 
   socket.on('connect', function(){
