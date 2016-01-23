@@ -84,7 +84,7 @@
     socket.emit('new-location', posObj);
   };
 
-  var geo_options = { enableHighAccuracy: true };
+  // var geo_options = { enableHighAccuracy: true };
 
   var error = function(err) {
     console.log("ERROR: ", err);
@@ -94,8 +94,8 @@
   function getLocationInterval (){
      setInterval(function(){
     console.log("Hi. You should see positions after this. Every second.")
-    navigator.geolocation.getCurrentPosition(success, error, geo_options)
-  },1000)
+    navigator.geolocation.getCurrentPosition(success, error)
+  },2000)
 }
 getLocationInterval();
 
