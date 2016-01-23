@@ -21,21 +21,17 @@ io.on('connection', function(socket){
     console.log('usernames sent to clients: ', usernames);
   });
 
-  socket.on('new-location', function(data){
-    //console.log('message: ' + data);
+  socket.on('location', function (data) {
+    io.broadcast.emit('location', data);
+  });
 
-    // if (Math.abs(data.lat - target.lat) < 0.000025 && Math.abs(data.long - target.long) < 0.000025) {
-    //   io.emit('chat-broadcast', data.username + " COLLISION WITH TARGET!");
-    // } else {
-    //   io.emit('chat-broadcast', data.username + " position: " + data.lat + data.long);
-    //}
+  socket.on('new-location', function(data){
     var item = {
       lat: 34.0191826,
       long: -118.4942513,
       type: "flag",
       range: 5,
     }
-
     var dist = calc.haversine(data.lat, data.long, item.lat, item.long);
     console.log(data.username, "Distance from target", dist);
     io.emit('chat-broadcast', data.username + "'s distance from target: " + dist.toString());

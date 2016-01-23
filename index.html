@@ -79,21 +79,27 @@
       long: pos.coords.longitude
     };
 
-    console.log('watchPosition successful:', posObj.lat + "," + posObj.long);
+    console.log('getCurrentPosition successful:', posObj.lat + "," + posObj.long);
 
     socket.emit('new-location', posObj);
   };
+
+  var geo_options = { enableHighAccuracy: true };
 
   var error = function(err) {
     console.log("ERROR: ", err);
   };
 
   //geo change event listener
-  var posWatcher = navigator.geolocation.watchPosition(success, error);
+  setTimeout(navigator.geolocation.getCurrentPosition.call(null, success, error, geo_options),
+    1000)
 
   socket.on('connect', function(){
     console.log('connected on client-side!');
     socket.emit('save-user', username);
+    socket.on('location', function(location){
+      location_callback(location);
+    })
   });
 
   socket.on('online-list', function(list){
