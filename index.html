@@ -91,8 +91,17 @@
   };
 
   //geo change event listener
-  setTimeout(function(){navigator.geolocation.getCurrentPosition(success, error, geo_options)},
-    1000)
+  function getLocationInterval (){
+     setInterval(function(){
+    console.log("Hi. You should see positions after this. Every second.")
+    navigator.geolocation.getCurrentPosition(success, error, geo_options)
+  },1000)
+}
+getLocationInterval();
+
+  setInterval(function(){
+    console.log("Hello every second")
+  }, 1000)
 
   socket.on('connect', function(){
     console.log('connected on client-side!');
